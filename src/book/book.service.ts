@@ -24,9 +24,15 @@ export class BookService {
     const book = await this.bookModel.findById(id);
 
     if (!book) {
-      throw new NotFoundException('Book not found.');
-    }
+      // throw new NotFoundException('Book not found...');
 
+      throw new NotFoundException({
+        message: 'Book not found...',
+        error: 'Not Found ID',
+        statusCode: 404,
+      });
+    }
+    
     return book;
   }
 
